@@ -1,6 +1,7 @@
 package datastructure.heap;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 enum HeapType {
     max(1), min(-1);
@@ -96,6 +97,15 @@ public class Heap<T extends Comparable<T>> {
             storage.set(parent, currentNode);
             heapyfiyShiftUp(parent);
         }
+    }
+
+    public void addAll(Collection<? extends T> items) {
+        this.storage.addAll(items);
+        constructHeap();
+    }
+
+    public void flushAll() {
+        this.storage = new ArrayList<>();
     }
 
     public boolean insert(T data) {
