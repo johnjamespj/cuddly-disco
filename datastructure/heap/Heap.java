@@ -99,6 +99,10 @@ public class Heap<T extends Comparable<T>> {
     }
 
     public boolean insert(T data) {
+        if (data == null) {
+            return false;
+        }
+
         storage.add(data);
         heapyfiyShiftUp(size() - 1);
         return true;
@@ -138,7 +142,10 @@ public class Heap<T extends Comparable<T>> {
             storage.set(i, data);
         }
 
-        return storage;
+        ArrayList<T> sortedArray = storage;
+        this.storage = new ArrayList<>();
+
+        return sortedArray;
     }
 
     @Override
@@ -161,7 +168,7 @@ public class Heap<T extends Comparable<T>> {
         }
         System.out.println();
 
-        heap = new Heap<>(sampleArray);
+        heap = new Heap<>(HeapType.min, sampleArray);
         System.out.println(heap.sort());
     }
 
