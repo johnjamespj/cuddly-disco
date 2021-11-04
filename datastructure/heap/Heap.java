@@ -1,24 +1,9 @@
 package datastructure.heap;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-enum HeapType {
-    max(1), min(-1);
-
-    private int offset;
-
-    HeapType(int offset) {
-        this.offset = offset;
-    }
-
-    public int getOffset() {
-        return this.offset;
-    }
-}
+import java.util.*;
 
 public class Heap<T extends Comparable<T>> {
-    private ArrayList<T> storage;
+    private List<T> storage;
     private HeapType heapType;
 
     public Heap() {
@@ -30,13 +15,13 @@ public class Heap<T extends Comparable<T>> {
         this.storage = new ArrayList<>();
     }
 
-    public Heap(ArrayList<T> arrayList) {
-        this(HeapType.max, arrayList);
+    public Heap(List<T> list) {
+        this(HeapType.max, list);
     }
 
-    public Heap(HeapType heapType, ArrayList<T> arrayList) {
+    public Heap(HeapType heapType, List<T> list) {
         this.heapType = heapType;
-        this.storage = new ArrayList<>(arrayList);
+        this.storage = list;
         constructHeap();
     }
 
@@ -143,7 +128,7 @@ public class Heap<T extends Comparable<T>> {
         return storage.size();
     }
 
-    public ArrayList<T> sort() {
+    public List<T> sort() {
         for (int i = size() - 1; i >= 0; i--) {
             T data = storage.get(0);
             T lastItem = storage.get(i);
@@ -152,7 +137,7 @@ public class Heap<T extends Comparable<T>> {
             storage.set(i, data);
         }
 
-        ArrayList<T> sortedArray = storage;
+        List<T> sortedArray = storage;
         this.storage = new ArrayList<>();
 
         return sortedArray;
